@@ -13,28 +13,28 @@ const footerYear = document.querySelector("span.year");             //Footer spa
 //Fetch all tasks from database and display in frontend
 
 fetch("http://localhost:3000/tasks")
-.then(res => res.json())
-.then((data) => {
-    data.map((task) => {
-        const newDiv = document.createElement("div");
-        const date = task.dueDate.substring(0, 10);
-        let statusInfo;
-        function initialStatus() {
-            if(task.status) {
-                statusInfo = {
-                    text: "Completed",
-                    color: "green"
+    .then(res => res.json())
+    .then((data) => {
+        data.map((task) => {
+            const newDiv = document.createElement("div");
+            const date = task.dueDate.substring(0, 10);
+            let statusInfo;
+            function initialStatus() {
+                if (task.status) {
+                    statusInfo = {
+                        text: "Completed",
+                        color: "green"
+                    }
+                }
+                else {
+                    statusInfo = {
+                        text: "Mark as Completed",
+                        color: "red"
+                    }
                 }
             }
-            else {
-                statusInfo = {
-                    text: "Mark as Completed",
-                    color: "red"
-                }
-            }
-        }
-        initialStatus()
-        newDiv.innerHTML = `
+            initialStatus()
+            newDiv.innerHTML = `
             <h3>Course Id: <span class="courseId">${task.courseId}</span></h3>
             <p>${task.taskName}</p>
             <p>${task.taskDescription}</p>
@@ -44,9 +44,9 @@ fetch("http://localhost:3000/tasks")
                 <button class="delete" onclick="del(this)" style="background-color: red">Delete</button>
             </div>
         `
-        tasks.appendChild(newDiv);
-    })
-});
+            tasks.appendChild(newDiv);
+        })
+    });
 
 //To toggle new task form 
 
@@ -54,9 +54,15 @@ addTask.addEventListener("click", () => {
     newTask.classList.toggle("hidden");
 });
 
+function clearTasks() {
+    if (confirm("Are you sure you want to clear all tasks?")) {
+        tasks = [];
+        displayTasks();
+    }
+}
 //To prevent default of forms on submit
 
-for(let i=0; i<forms.length; i++) {
+for (let i = 0; i < forms.length; i++) {
     forms[i].addEventListener("submit", (e) => {
         e.preventDefault();
     });
@@ -91,9 +97,9 @@ newTaskForm.addEventListener("submit", () => {
 fetchTaskSubmit.addEventListener("click", () => {
     const allTasks = document.querySelectorAll("#tasks > div");
     const id = fetchTaskForm.querySelector("input").value.trim();
-    for(let i=0; i<allTasks.length; i++) {
+    for (let i = 0; i < allTasks.length; i++) {
         const currId = allTasks[i].querySelector(".courseId").textContent;
-        if(currId == id) {
+        if (currId == id) {
             allTasks[i].classList.remove("hidden");
         }
         else {
@@ -114,9 +120,9 @@ function showAll() {
 function showComplete() {
     const allTasks = document.querySelectorAll("#tasks > div");
     console.log(allTasks.length);
-    for(let i=0; i<allTasks.length; i++) {
+    for (let i = 0; i < allTasks.length; i++) {
         const currStatus = allTasks[i].querySelector(".status").textContent;
-        if(currStatus == "Completed") {
+        if (currStatus == "Completed") {
             allTasks[i].classList.remove("hidden");
         }
         else {
@@ -129,10 +135,10 @@ function showComplete() {
 
 function showIncomplete() {
     const allTasks = document.querySelectorAll("#tasks > div");
-    for(let i=0; i<allTasks.length; i++) {
+    for (let i = 0; i < allTasks.length; i++) {
         const currStatus = allTasks[i].querySelector(".status").textContent;
         console.log(currStatus);
-        if(currStatus == "Completed") {
+        if (currStatus == "Completed") {
             allTasks[i].classList.add("hidden");
         }
         else {
