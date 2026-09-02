@@ -147,6 +147,35 @@ function showIncomplete() {
     }
 }
 
+function submitTask() {
+
+    const taskInput = document.querySelector("#taskInput");
+    const taskText = taskInput.value;
+
+    if (taskText == "") {
+
+        alert("Please enter a task.");
+
+    }
+
+    else {
+
+        const taskList = document.querySelector("#tasks");
+
+        const newTask = document.createElement("div");
+
+        newTask.innerHTML = `
+            <span class="task">${taskText}</span>
+            <span class="status">Pending</span>
+        `;
+
+        taskList.appendChild(newTask);
+
+        taskInput.value = "";
+
+        console.log("Task submitted:", taskText);
+    }
+}
 //Delete function to delete a task
 
 function del(button) {

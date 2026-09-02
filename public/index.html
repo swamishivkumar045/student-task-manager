@@ -28,6 +28,11 @@
             </div>
         </div>
     </div>
+    <input type="text" id="taskInput" placeholder="Enter task">
+
+<button onclick="submitTask()">Submit Task</button>
+
+<div id="tasks"></div>
     <div class="newTask hidden">
         <form action="newTask" method="post">
             <div>
@@ -55,6 +60,8 @@
         <button onclick="showAll()">Show all tasks</button>
         <button onclick="showComplete()">Completed Tasks</button>
         <button onclick="showIncomplete()">Incomplete Task</button>
+        <button onclick="submit()">submit Task</button>
+        
         <button onclick="clearTasks()">Clear All Tasks</button>
     </div>
     <div id="tasks">
