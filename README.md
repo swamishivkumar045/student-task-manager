@@ -37,3 +37,6 @@ Added improvements as part of GitHub collaboration.
 
 ![Screenshot3](https://github.com/HKalithkar/Student_Task_Manager/blob/main/screenshots/Screenshot-3.png)
 (initial commit)
+
+## My Contribution
+Added improvements as part of GitHub collaboration.
